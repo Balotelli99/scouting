@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: scouting
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview -- --host 0.0.0.0 --port $PORT --strictPort
+    autoDeploy: true
