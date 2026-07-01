@@ -1,0 +1,246 @@
+/* ==========================================================================
+   1. ALGEMENE STIJLEN & BASIS (Arial conform richtlijnen)
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box; /* Zorgt dat padding de elementen niet breder maakt */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. HEADER (Scouting Blauw en Rood)
+   ========================================================================== */
+.scouting-header {
+    background-color: #1A368D;
+    color: #FFFFFF;
+    padding: 20px 15px;
+    text-align: center;
+    border-bottom: 5px solid #FF0000;
+}
+
+.scouting-title, .card-title, .sidebar-title, .hoofdtak-titel, .legenda h4 {
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.scouting-title {
+    font-size: 1.8rem; /* Iets kleiner op mobiel als basis */
+    margin: 0 0 8px 0;
+}
+
+.scouting-subtitle {
+    font-size: 1rem;
+    margin: 0;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Schermgrootte aanpassing voor grotere desktops */
+@media (min-width: 768px) {
+    .scouting-header { padding: 30px 20px; }
+    .scouting-title { font-size: 2.6rem; }
+    .scouting-subtitle { font-size: 1.2rem; }
+}
+
+/* ==========================================================================
+   3. NAVIGATIE / SPELTAK-KNOPPEN
+   ========================================================================== */
+.nav-container {
+    display: flex;
+    flex-direction: column; /* Onder elkaar op mobiel */
+    gap: 10px;
+    padding: 0 15px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.nav-btn {
+    width: 100%;
+    padding: 14px;
+    font-family: 'Impact', sans-serif;
+    font-size: 1rem;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+#btn-er.active { background-color: #31A529; color: #fff; }
+#btn-bws.active { background-color: #FF0000; color: #fff; }
+
+/* Knoppen naast elkaar op tablets en desktops */
+@media (min-width: 576px) {
+    .nav-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .nav-btn {
+        width: auto;
+        padding: 12px 24px;
+    }
+}
+
+/* ==========================================================================
+   4. LAYOUT GRID (Responsive van 1 naar 2 kolommen)
+   ========================================================================== */
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px 40px 15px;
+    
+    /* Standaard: één kolom onder elkaar (mobiel) */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Vanaf tablets en desktops: Splitsen in vragenlijst (links) en scorebalken (rechts) */
+@media (min-width: 992px) {
+    .main-container {
+        grid-template-columns: 1.6fr 1fr; /* Flexibele verhouding */
+        padding: 0 20px 40px 20px;
+    }
+    
+    .status-sidebar {
+        position: sticky;
+        top: 20px; /* Blijft op z'n plek als je naar beneden scrollt */
+        height: fit-content;
+    }
+}
+
+/* Kaarten basisstijl */
+.card, .status-sidebar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card-title, .sidebar-title {
+    color: #1A368D;
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+.card-intro {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.hoofdtak-titel {
+    color: #1A368D;
+    border-bottom: 2px solid #31A529;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-size: 1.15rem;
+}
+
+/* ==========================================================================
+   5. VRAGEN / TAKEN RIJEN (Geoptimaliseerd voor mobiel tikken)
+   ========================================================================== */
+.taak-rij {
+    display: flex;
+    flex-direction: column; /* Op mobiel de tekst boven het keuzemenu */
+    gap: 10px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.taak-tekst {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+select {
+    width: 100%; /* Volledige breedte op mobiel zodat je makkelijk tikt */
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Op grotere schermen zetten we de tekst en de dropdown netjes naast elkaar */
+@media (min-width: 600px) {
+    .taak-rij {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .taak-tekst {
+        flex: 1; /* Neemt alle beschikbare ruimte in */
+    }
+    
+    select {
+        width: auto; /* Dropdown wordt weer compact */
+        min-width: 160px;
+    }
+}
+
+/* ==========================================================================
+   6. SCORES & VOORTGANGSBALKEN
+   ========================================================================== */
+.score-item {
+    margin: 20px 0;
+}
+
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9rem;
+    gap: 10px;
+}
+
+.progress-bar-outer {
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 16px;
+    margin-top: 6px;
+}
+
+.progress-bar-inner {
+    width: 0%;
+    height: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-groen { background-color: #31A529; }
+.bar-blauw { background-color: #1A368D; }
+.bar-rood { background-color: #FF0000; }
+
+/* Legenda sectie */
+.legenda {
+    border-top: 1px solid #ddd;
+    margin-top: 25px;
+    padding-top: 20px;
+}
+
+.legenda h4 {
+    margin-top: 0;
+    color: #1A368D;
+}
+
+.legenda p {
+    font-size: 0.85rem;
+    margin: 6px 0;
+    color: #555;
+}
