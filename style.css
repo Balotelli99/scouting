@@ -1,8 +1,8 @@
 /* ==========================================================================
-   1. ALGEMENE STIJLEN & BASIS (Arial conform richtlijnen)
+   1. ALGEMENE STIJLEN & BASIS
    ========================================================================== */
 *, *::before, *::after {
-    box-sizing: border-box; /* Zorgt dat padding de elementen niet breder maakt */
+    box-sizing: border-box;
 }
 
 body {
@@ -12,6 +12,8 @@ body {
     padding: 0;
     color: #333;
     line-height: 1.5;
+    /* Ruimte onderaan op mobiel voor de vaste score-balk */
+    padding-bottom: 0;
 }
 
 /* ==========================================================================
@@ -20,9 +22,9 @@ body {
 .scouting-header {
     background-color: #1A368D;
     color: #FFFFFF;
-    padding: 20px 15px;
+    padding: 16px 12px;
     text-align: center;
-    border-bottom: 5px solid #FF0000;
+    border-bottom: 4px solid #FF0000;
 }
 
 .scouting-title, .card-title, .sidebar-title, .hoofdtak-titel, .legenda h4 {
@@ -32,22 +34,27 @@ body {
 }
 
 .scouting-title {
-    font-size: 1.8rem; /* Iets kleiner op mobiel als basis */
-    margin: 0 0 8px 0;
+    font-size: 1.4rem;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
 }
 
 .scouting-subtitle {
-    font-size: 1rem;
+    font-size: 0.85rem;
     margin: 0;
     font-style: italic;
     opacity: 0.9;
 }
 
-/* Schermgrootte aanpassing voor grotere desktops */
+@media (min-width: 480px) {
+    .scouting-title { font-size: 1.7rem; }
+    .scouting-subtitle { font-size: 0.95rem; }
+}
+
 @media (min-width: 768px) {
-    .scouting-header { padding: 30px 20px; }
-    .scouting-title { font-size: 2.6rem; }
-    .scouting-subtitle { font-size: 1.2rem; }
+    .scouting-header { padding: 28px 20px; }
+    .scouting-title { font-size: 2.4rem; }
+    .scouting-subtitle { font-size: 1.15rem; }
 }
 
 /* ==========================================================================
@@ -55,165 +62,308 @@ body {
    ========================================================================== */
 .nav-container {
     display: flex;
-    flex-direction: column; /* Onder elkaar op mobiel */
-    gap: 10px;
-    padding: 0 15px;
-    margin: 20px 0;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    margin: 0;
     width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-btn {
     width: 100%;
-    padding: 14px;
+    padding: 13px 10px;
     font-family: 'Impact', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     background-color: #e0e0e0;
     color: #333;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     text-transform: uppercase;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
     text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.nav-btn:active {
+    transform: scale(0.98);
 }
 
 #btn-er.active { background-color: #31A529; color: #fff; }
 #btn-bws.active { background-color: #FF0000; color: #fff; }
 
-/* Knoppen naast elkaar op tablets en desktops */
-@media (min-width: 576px) {
+@media (min-width: 480px) {
     .nav-container {
         flex-direction: row;
         justify-content: center;
+        padding: 12px 15px;
+        position: static; /* Niet sticky op grotere schermen, scrollt gewoon mee */
     }
     .nav-btn {
         width: auto;
-        padding: 12px 24px;
+        flex: 1;
+        max-width: 320px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .nav-container {
+        margin: 16px auto;
+        max-width: 800px;
+        box-shadow: none;
+        background: transparent;
+    }
+    .nav-btn {
+        flex: none;
+        width: auto;
+        padding: 12px 28px;
     }
 }
 
 /* ==========================================================================
-   4. LAYOUT GRID (Responsive van 1 naar 2 kolommen)
+   4. LAYOUT GRID (Mobiel-eerst: 1 kolom, Desktop: 2 kolommen)
    ========================================================================== */
 .main-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px 40px 15px;
-    
-    /* Standaard: één kolom onder elkaar (mobiel) */
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    padding: 12px 12px 120px 12px; /* Onderaan ruimte voor mobiele score-balk */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-/* Vanaf tablets en desktops: Splitsen in vragenlijst (links) en scorebalken (rechts) */
+@media (min-width: 480px) {
+    .main-container {
+        padding: 16px 16px 40px 16px;
+    }
+}
+
 @media (min-width: 992px) {
     .main-container {
-        grid-template-columns: 1.6fr 1fr; /* Flexibele verhouding */
-        padding: 0 20px 40px 20px;
-    }
-    
-    .status-sidebar {
-        position: sticky;
-        top: 20px; /* Blijft op z'n plek als je naar beneden scrollt */
-        height: fit-content;
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        padding: 20px 20px 40px 20px;
+        gap: 20px;
+        align-items: start;
     }
 }
 
-/* Kaarten basisstijl */
 .card, .status-sidebar {
     background-color: #fff;
-    padding: 20px;
+    padding: 16px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+@media (min-width: 992px) {
+    .card { padding: 24px; }
+
+    .status-sidebar {
+        padding: 24px;
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+    }
 }
 
 .card-title, .sidebar-title {
     color: #1A368D;
     margin-top: 0;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+    .card-title, .sidebar-title { font-size: 1.4rem; }
 }
 
 .card-intro {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
 .hoofdtak-titel {
     color: #1A368D;
     border-bottom: 2px solid #31A529;
     padding-bottom: 5px;
-    margin-top: 30px;
-    font-size: 1.15rem;
+    margin-top: 28px;
+    font-size: 1rem;
+}
+
+@media (min-width: 576px) {
+    .hoofdtak-titel { font-size: 1.1rem; }
 }
 
 /* ==========================================================================
-   5. VRAGEN / TAKEN RIJEN (Geoptimaliseerd voor mobiel tikken)
+   5. MOBIELE VASTE SCORE-BAK ONDERAAN (alleen zichtbaar op telefoons)
+   ========================================================================== */
+.score-bar-mobiel {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1A368D;
+    color: #fff;
+    z-index: 200;
+    box-shadow: 0 -3px 12px rgba(0,0,0,0.25);
+}
+
+.score-bar-mobiel-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    gap: 4px;
+    min-width: 0;
+}
+
+.score-bar-mobiel-item:last-child {
+    border-right: none;
+}
+
+.score-bar-mobiel-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0 2px;
+}
+
+.score-bar-mobiel-waarde {
+    font-family: 'Impact', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.score-bar-mobiel .mini-bar-outer {
+    width: 90%;
+    height: 5px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.score-bar-mobiel .mini-bar-inner {
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
+}
+
+.mini-bar-groen { background-color: #4cde43; }
+.mini-bar-blauw { background-color: #7fa8ff; }
+.mini-bar-rood  { background-color: #ff6b6b; }
+
+/* Verberg de mobiele balk op grotere schermen */
+@media (min-width: 992px) {
+    .score-bar-mobiel {
+        display: none;
+    }
+    body {
+        padding-bottom: 0;
+    }
+}
+
+/* Verberg de desktop sidebar op kleine schermen */
+@media (max-width: 991px) {
+    .status-sidebar {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   6. VRAGEN / TAKEN RIJEN
    ========================================================================== */
 .taak-rij {
     display: flex;
-    flex-direction: column; /* Op mobiel de tekst boven het keuzemenu */
-    gap: 10px;
-    padding: 15px 0;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 0;
     border-bottom: 1px solid #eee;
 }
 
 .taak-tekst {
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-size: 0.9rem;
+    line-height: 1.45;
 }
 
 select {
-    width: 100%; /* Volledige breedte op mobiel zodat je makkelijk tikt */
-    padding: 10px;
+    width: 100%;
+    padding: 11px 10px;
     font-size: 1rem;
     border-radius: 6px;
     border: 1px solid #ccc;
     background-color: #fff;
     cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+    padding-right: 36px;
+    touch-action: manipulation;
 }
 
-/* Op grotere schermen zetten we de tekst en de dropdown netjes naast elkaar */
 @media (min-width: 600px) {
     .taak-rij {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
+        gap: 16px;
     }
-    
     .taak-tekst {
-        flex: 1; /* Neemt alle beschikbare ruimte in */
+        flex: 1;
+        font-size: 0.95rem;
     }
-    
     select {
-        width: auto; /* Dropdown wordt weer compact */
-        min-width: 160px;
+        width: auto;
+        min-width: 155px;
+        flex-shrink: 0;
     }
 }
 
 /* ==========================================================================
-   6. SCORES & VOORTGANGSBALKEN
+   7. DESKTOP SCORES & VOORTGANGSBALKEN (in sidebar)
    ========================================================================== */
 .score-item {
-    margin: 20px 0;
+    margin: 16px 0;
 }
 
 .score-header {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
-    font-size: 0.9rem;
-    gap: 10px;
+    font-size: 0.88rem;
+    gap: 8px;
+    align-items: center;
 }
 
 .progress-bar-outer {
     background-color: #eee;
     border-radius: 10px;
     overflow: hidden;
-    height: 16px;
+    height: 14px;
     margin-top: 6px;
 }
 
@@ -221,26 +371,27 @@ select {
     width: 0%;
     height: 100%;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
 }
 
 .bar-groen { background-color: #31A529; }
 .bar-blauw { background-color: #1A368D; }
-.bar-rood { background-color: #FF0000; }
+.bar-rood  { background-color: #FF0000; }
 
-/* Legenda sectie */
 .legenda {
     border-top: 1px solid #ddd;
-    margin-top: 25px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 16px;
 }
 
 .legenda h4 {
     margin-top: 0;
     color: #1A368D;
+    font-size: 0.95rem;
 }
 
 .legenda p {
-    font-size: 0.85rem;
-    margin: 6px 0;
+    font-size: 0.82rem;
+    margin: 5px 0;
     color: #555;
 }

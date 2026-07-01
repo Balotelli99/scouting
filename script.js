@@ -113,11 +113,15 @@ function updateScores() {
         
         const percentage = aantal === 0 ? 0 : Math.round(((totaal / aantal) / 5) * 100);
         
-        // Update de DOM elementen
+        // Update desktop sidebar
         document.getElementById(`score-${num}-text`).innerText = `${percentage}%`;
         document.getElementById(`progress-${num}`).style.width = `${percentage}%`;
+
+        // Update mobiele score-balk onderaan
+        document.getElementById(`m-score-${num}`).innerText = `${percentage}%`;
+        document.getElementById(`m-progress-${num}`).style.width = `${percentage}%`;
     });
 }
 
-// Eerste keer inladen
+
 wisselSpeltak('explorersRovers');
