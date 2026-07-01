@@ -1,8 +1,12 @@
 services:
   - type: web
     name: scouting
-    env: node
+    env: static
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: npm run preview -- --host 0.0.0.0 --port $PORT --strictPort
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     autoDeploy: true
