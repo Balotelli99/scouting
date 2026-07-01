@@ -12,7 +12,6 @@ body {
     padding: 0;
     color: #333;
     line-height: 1.5;
-    /* Ruimte onderaan op mobiel voor de vaste score-balk */
     padding-bottom: 0;
 }
 
@@ -26,6 +25,29 @@ body {
     text-align: center;
     border-bottom: 4px solid #FF0000;
 }
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.header-tekst {
+    text-align: left;
+}
+
+.scouting-logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
 
 .scouting-title, .card-title, .sidebar-title, .hoofdtak-titel, .legenda h4 {
     font-family: 'Impact', sans-serif;
@@ -103,7 +125,7 @@ body {
         flex-direction: row;
         justify-content: center;
         padding: 12px 15px;
-        position: static; /* Niet sticky op grotere schermen, scrollt gewoon mee */
+        position: static;
     }
     .nav-btn {
         width: auto;
@@ -135,7 +157,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 12px 12px 120px 12px; /* Onderaan ruimte voor mobiele score-balk */
+    padding: 12px 12px 120px 12px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -274,7 +296,6 @@ body {
 .mini-bar-blauw { background-color: #7fa8ff; }
 .mini-bar-rood  { background-color: #ff6b6b; }
 
-/* Verberg de mobiele balk op grotere schermen */
 @media (min-width: 992px) {
     .score-bar-mobiel {
         display: none;
@@ -284,7 +305,6 @@ body {
     }
 }
 
-/* Verberg de desktop sidebar op kleine schermen */
 @media (max-width: 991px) {
     .status-sidebar {
         display: none;
