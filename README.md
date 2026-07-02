@@ -2,25 +2,15 @@
 
 ## Waar wordt React gebruikt?
 
-- **src/App.jsx** - De hoofd app, hier staan alle componenten
-- **src/main.jsx** - Laadt React app in de pagina
+React wordt in deze opdracht gebruikt om de website interactief te maken. In **src/App.jsx** staat de belangrijkste code. Daar worden de speltakken, taken, scores en de voortgangsbalken zichtbaar gemaakt. **src/main.jsx** zorgt ervoor dat deze React-app in de browser wordt geladen.
 
-## Hoe werkt het?
+React wordt hier gebruikt door de ontwikkelaar om de website levendig en makkelijk te gebruiken te maken. Daardoor kan een gebruiker snel een score kiezen en meteen zien wat zijn resultaat is, zonder dat de hele pagina steeds opnieuw hoeft te laden.
 
-1. Open `index.html` 
-2. Klik op een van de 2 knoppen voor Explorers/Rovers of Bevers/Welpen/Scouts
-3. Kies voor elke taak een score van 1-5
-4. De progress bars veranderen automatisch
+## Responsiveheid
 
-## Scripts
+Responsive betekent dat de website zich automatisch aanpast aan het apparaat dat je gebruikt. Op een kleine telefoon wordt de inhoud bijvoorbeeld verticaal getoond, zodat je alles makkelijk kunt lezen zonder te zoomen. Op een grotere tablet of computer kan de website breder worden gemaakt, zodat er meer ruimte is voor de inhoud.
 
-```
-npm run dev       # Start ontwikkel server
-npm run build     # Maak productie bestanden
-```
+Dit gebeurt doordat de website met CSS verschillende layouts gebruikt voor verschillende schermgroottes. In **src/App.css** staan de regels voor de responsive opmaak. Daar zijn media queries toegevoegd voor schermgroottes zoals 480 px, 600 px, 768 px en 992 px, zodat de header, navigatie, takenlijst en sidebar zich aanpassen aan het apparaat.
 
-## Bestanden
+Zo blijven de knoppen, tekst en onderdelen goed zichtbaar en gebruiksvriendelijk, ook op een kleine scherm.
 
-- `src/App.jsx` - React component
-- `src/App.css` - Styling  
-- `public/logo.png` - Logo
