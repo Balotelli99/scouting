@@ -14,3 +14,9 @@ Dit gebeurt doordat de website met CSS verschillende layouts gebruikt voor versc
 
 Zo blijven de knoppen, tekst en onderdelen goed zichtbaar en gebruiksvriendelijk, ook op een kleine scherm.
 
+## Wat heb ik gemaakt?
+
+Ik heb een website gemaakt voor Scouting Competentieroos. Deze website is bedoeld voor leidinggevenden in de scouting om hun vaardigheden en taken te beoordelen. De gebruiker kan kiezen tussen verschillende speltakken, scores invullen en meteen zien hoe zijn voortgang is.
+
+Wat ik precies heb gemaakt, is een interactieve webapplicatie met een duidelijke opbouw, knoppen om te wisselen tussen speltakken, invulvelden voor scores en voortgangsbalken die automatisch veranderen. De website is netjes opgemaakt en werkt goed op verschillende apparaten.
+
